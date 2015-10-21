@@ -1,0 +1,28 @@
+<ion-view view-title="Events">
+	<ion-nav-buttons class="button button-clear button-positive" side="left">
+		<button class="button button-clear" ui-sref="tab.events.add-events">Add Event</button>    
+	</ion-nav-buttons>
+ <ion-content class="padding">
+ 
+    <ion-refresher
+				pulling-text="Pull to refresh..."
+				on-refresh="refreshItems()" >
+		</ion-refresher >   
+      
+    <div class="list card" ng-repeat="item in items | orderBy: '-createdAt'"
+	      			item="campusitem"
+	      			href="#/campusevents/edit/{{item.objectId}}/{{item.EventName}}">
+      
+      
+      <!-- Image File -->
+      <div class="item item-image" >
+	     <img src="{{item.imageFile.url}}" >
+	      <h2>{{item.Title}}</h2>         
+	      <p>{{item.Date}}</p>
+      </div>
+      
+      
+      
+      </div>
+     </ion-content>
+</ion-view>

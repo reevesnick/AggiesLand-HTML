@@ -13,7 +13,7 @@ angular.module('starter.controllers', [])
   $scope.loginData = {};
 
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
+  $ionicModal.fromTemplateUrl('templates/tab-home.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
@@ -41,7 +41,8 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
+.controller('HomeCtrl', ['$scope','News', function($scope,News) {
+	// Dummy data. Just ignore it
   $scope.playlists = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
@@ -50,7 +51,30 @@ angular.module('starter.controllers', [])
     { title: 'Rap', id: 5 },
     { title: 'Cowbell', id: 6 }
   ];
+  
+  News.getAll().success(function(data){
+		$scope.items = data.results;
+		
+	})
+
+}])
+
+// <No Longer Used>
+.controller('EventsCtrl', function($scope, Chats) {
+ 
 })
+
+.controller('SportsCtrl', function($scope){
+	
+})
+
+
+.controller('RoutesCtrl', function($scope) {
+  $scope.alertTest = function alertTest(){
+	  alert("This is a test");
+  };
+})
+
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 });

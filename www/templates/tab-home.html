@@ -1,0 +1,27 @@
+<ion-view view-title="Home">
+  <ion-content class="padding">
+   <ion-refresher
+				pulling-text="Pull to refresh..."
+				on-refresh="refreshItems()" >
+		</ion-refresher >   
+      
+    <div class="list card"
+	    ng-repeat="item in items | orderBy: '-createdAt'"
+	      			item="item"
+	      			href="#/news/edit/{{item.objectId}}" ui-sref="tab.home-detail({item: $index})">
+      
+      
+      <!-- Image File -->
+   <div class="item item-image"  	      			
+   item="item"
+	      			href="#/news/create/{{item.objectId}}/{{item.imageFile}}"
+	      			ng-if="item.imageFile">
+	      <!--	<img src="resources/sports-slideshow-song.jpg">  -->
+		  	<img src="{{item.imageFile.url}}">   
+	            <h2>{{item.Title}}</h2>         
+				<p>{{item.Date}}</p>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>      
+      
