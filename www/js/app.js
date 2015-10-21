@@ -53,6 +53,16 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','Ag
         }
       }
     })
+    
+      .state('app.routes.71', {
+	  url: '/routes-71',
+	  views: {
+		  'routes-71': {
+			  templateUrl: 'templates/bus-routes/71.html',
+			  controller: '71Ctrl'
+		  }
+	  }
+  })
     .state('app.home', {
       url: '/home',
       views: {
@@ -62,6 +72,17 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','Ag
         }
       }
     })
+    
+      // News Feed Detail Controller
+ .state('app.home-detail', {
+	 url:'/home/:id',
+	 views: {
+		 'app-home' :{
+			 templateUrl: 'templates/tab-home-detail.html',
+			 controller: 'HomeDetailCtrl'
+		 }
+	 }
+ })
 
   .state('app.sports', {
     url: '/sports',

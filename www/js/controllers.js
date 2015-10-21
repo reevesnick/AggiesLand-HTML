@@ -53,16 +53,26 @@ angular.module('starter.controllers', [])
   ];
   
   News.getAll().success(function(data){
-		$scope.items = data.results;
-		
+		$scope.items = data.results;	
 	})
 
 }])
 
-// <No Longer Used>
-.controller('EventsCtrl', function($scope, Chats) {
- 
+.controller('HomeDetailCtrl',function(){
+
 })
+
+.controller('EventsCtrl',['$scope','$state','$location','Clubs', function($scope,$state,$location,Clubs) {
+ 	Clubs.getAll().success(function(data){
+		$scope.items = data.results;
+	})
+    
+    $scope.addEvents = function(){
+       $state.go('app.add-events');
+       // $location.path("/tab/add-events");
+    };
+
+}])
 
 .controller('SportsCtrl', function($scope){
 	
