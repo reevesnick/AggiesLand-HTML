@@ -8,7 +8,7 @@
     <div class="list card"
 	    ng-repeat="item in items | orderBy: '-createdAt'"
 	      			item="item"
-	      			href="#/news/edit/{{item.objectId}}" ui-sref="app.home-detail({item: $index})">
+	      			href="#/news/edit/{{item.objectId}}" > <!--ui-sref="app.home-detail({objectId: $index})" --> <!-- For Detail View-->
       
       
       <!-- Image File -->
@@ -20,6 +20,7 @@
 		  	<img src="{{item.imageFile.url}}">   
 	            <h2>{{item.Title}}</h2>         
 				<p>{{item.Date}}</p>
+          <div class="item item-text-wrap">{{item.Body}}</div>
       </div>
     </div>
   </ion-content>

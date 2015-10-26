@@ -1,6 +1,6 @@
 <ion-view view-title="Events">
-	<ion-nav-buttons class="button button-clear button-positive" side="right">
-		<button class="button button-clear" ui-sref="tab.events.add-events">Add Event</button>    
+	<ion-nav-buttons side="right">
+		<button class="button button-icon button-clear ion-plus" ng-click="openModal()"></button>    
 	</ion-nav-buttons>
  <ion-content class="padding">
  
@@ -11,7 +11,7 @@
       
     <div class="list card" ng-repeat="item in items | orderBy: '-createdAt'"
 	      			item="campusitem"
-	      			href="#/campusevents/edit/{{item.objectId}}/{{item.EventName}}">
+	      			href="#/campusevents/edit/{{item.objectId}}">
       
       
       <!-- Image File -->
@@ -19,10 +19,17 @@
 	     <img src="{{item.imageFile.url}}" >
 	      <h2>{{item.Title}}</h2>         
 	      <p>{{item.Date}}</p>
+          <p>{{item.Price}}</p>
+          <p>{{item.socialHandle}}</p>
+          <div class="item item-text-wrap">{{item.Details}}</div>
+        <!--  <p>{{item.Details}}</p> -->
       </div>
       
       
       
+      
       </div>
+      
+
      </ion-content>
 </ion-view>

@@ -1,0 +1,68 @@
+<ion-modal-view class="product edit create">
+          <form name="itemEdit" novalidate>
+            <ion-header-bar class="bar-positive fix-buttons">
+              <a class="button" ng-click="closeModal()">Cancel</a>
+              <h1 class="title">Add Event</h1>
+            </ion-header-bar>
+            <ion-content has-bouncing="true">
+              <div class="row" ng-class="{'no-padding-top': !data.editItem}">
+                <div class="col">
+                  <label class="item item-input large">
+                    <input type="text" placeholder="Event Title" name=Title>
+                  </label>
+                </div>
+              </div>
+                
+                <!--
+              <div class="editable-image horizontal-image">
+                <div class="add"><i class="icon ion-upload"></i>
+                  <div class="instructions">Tap to upload photo</div>
+                </div>
+              </div>
+
+-->
+                
+             <div class="row">
+                <div class="col">
+                  <label class="item item-input large">
+                    <input type="text" placeholder="Date" name=Date>
+                  </label>
+                </div>
+              </div>
+                
+                 <div class="row">
+                <div class="col">
+                  <label class="item item-input large">
+                    <input type="text" placeholder="Twitter/IG (@) Handle" name="scoialHandle">
+                  </label>
+                </div>
+              </div>
+                
+              <div class="row">
+                <div class="col">
+                  <label class="item item-input large">
+                    <input type="text" placeholder="Price" name="Price">
+                  </label>
+                </div>
+              </div>
+              <div class="row description-row">
+                <div class="col">
+                  <label class="item item-input text">
+                    <textarea placeholder="Description" rows="5" ng-model="Clubs.details" ng-Required="true" name="Details" lose-focus-on-return></textarea>
+                  </label>
+                </div>
+              </div>
+
+              <div class="row charity-row">
+                <div class="col col-10 vert-center">
+                  <div class="charity large"></div>
+                </div>
+              </div>
+                
+            <ion-button class="button button-block button-positive" ng-click="create()">
+                Post Event
+            </ion-button>
+
+            </ion-content>
+          </form>
+        </ion-modal-view>

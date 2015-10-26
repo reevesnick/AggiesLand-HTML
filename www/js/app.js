@@ -37,33 +37,35 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','Ag
 
   .state('app.events', {
     url: '/events',
+    
     views: {
       'menuContent': {
-        templateUrl: 'templates/tab-events/tab-campus-parties.html',
+        templateUrl: 'templates/tab-campus-parties.html',
         controller: 'EventsCtrl'
       }
     }
   })
-
+  
   .state('app.routes', {
       url: '/routes',
       views: {
         'menuContent': {
           templateUrl: 'templates/tab-routes.html',
+          controller: 'RoutesCtrl'
         }
       }
     })
     
-      .state('app.routes.71', {
+ .state('app.routes.71', {
 	  url: '/routes-71',
 	  views: {
-		  'routes-71': {
+		  'menuContent': {
 			  templateUrl: 'templates/bus-routes/71.html',
 			  controller: '71Ctrl'
 		  }
 	  }
   })
-    .state('app.home', {
+ .state('app.home', {
       url: '/home',
       views: {
         'menuContent': {
@@ -75,14 +77,27 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','Ag
     
       // News Feed Detail Controller
  .state('app.home-detail', {
-	 url:'/home/:id',
+	 url:'/home/:objectId',
 	 views: {
-		 'app-home' :{
+		 'menuContent' :{
 			 templateUrl: 'templates/tab-home-detail.html',
 			 controller: 'HomeDetailCtrl'
 		 }
 	 }
  })
+ 
+     // Add Events
+   .state('app.add-events',{
+	    url:'/add-events',
+	    views: {
+		    'menuContent': {
+			    templateUrl: 'templates/add-event.html',
+			    controller: 'AddEventsCtrl'
+		    }
+	    }
+    })
+    
+
 
   .state('app.sports', {
     url: '/sports',

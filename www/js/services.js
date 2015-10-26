@@ -50,6 +50,7 @@ angular.module('starter.services', [])
   };
 });
 
+
 angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTIALS',function($http,PARSE_CREDENTIALS){
 	
 	 var object = {

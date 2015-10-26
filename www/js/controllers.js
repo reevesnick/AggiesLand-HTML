@@ -58,33 +58,64 @@ angular.module('starter.controllers', [])
 
 }])
 
-.controller('HomeDetailCtrl',function(){
+.controller('HomeDetailCtrl', ['$scope','News','$stateParams',function($scope,News,$stateParams){
+	News.get($stateParams.objectId, function(news){
+		$scope.news = news;
+	})
+}])
 
-})
-
-.controller('EventsCtrl',['$scope','$state','$location','Clubs', function($scope,$state,$location,Clubs) {
+.controller('EventsCtrl',['$scope','$state','$location','Clubs','$ionicModal', function($scope,$state,$location,Clubs,$ionicModal) {
  	Clubs.getAll().success(function(data){
 		$scope.items = data.results;
 	})
-    
-    $scope.addEvents = function(){
-       $state.go('app.add-events');
-       // $location.path("/tab/add-events");
-    };
 
+	$ionicModal.fromTemplateUrl('templates/add-event.html', {
+		animation: 'slide-in-up',
+		scope: $scope
+	}).then(function(modal){
+		$scope.modal = modal;
+	});
+	
+	$scope.openModal = function(){
+		$scope.modal.show();
+	}
+    
+    $scope.closeModal = function(){
+        $scope.modal.hide();
+  }
 }])
+
+.controller('AddEventsCtrl', ['$scope','Clubs','$state', function($scope,Clubs,$state){
+        $scope.Title={};
+        $scope.Date={};
+        $scope.socialHandle={};
+        $scope.Price={};
+        $scope.Details={};
+                              
+       $scope.create=function(){
+            Clubs.create({Details:$scope.Clubs.Details}).success(function(data){
+            $state.go('app.events');                    
+      });   
+   }                       
+	
+}])
+
 
 .controller('SportsCtrl', function($scope){
 	
 })
 
 
-.controller('RoutesCtrl', function($scope) {
+.controller('RoutesCtrl', function($scope,$state) {
   $scope.alertTest = function alertTest(){
-	  alert("This is a test");
+	  $state.go('/routes-71');
   };
 })
 
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+})
+
+.controller('71Ctrl',function($scope){
+	//$scope.test = function
 });
