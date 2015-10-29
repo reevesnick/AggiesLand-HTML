@@ -8,7 +8,7 @@
               <div class="row" ng-class="{'no-padding-top': !data.editItem}">
                 <div class="col">
                   <label class="item item-input large">
-                    <input type="text" placeholder="Event Title" name=Title>
+                    <input type="text" placeholder="Event Title" name=Title ng-model:newsdata.Title>
                   </label>
                 </div>
               </div>
@@ -25,7 +25,7 @@
              <div class="row">
                 <div class="col">
                   <label class="item item-input large">
-                    <input type="text" placeholder="Date" name=Date>
+                    <input type="text" placeholder="Date" name=Date ng-model="newsdata.Date">
                   </label>
                 </div>
               </div>
@@ -33,7 +33,7 @@
                  <div class="row">
                 <div class="col">
                   <label class="item item-input large">
-                    <input type="text" placeholder="Twitter/IG (@) Handle" name="scoialHandle">
+                    <input type="text" placeholder="Twitter/IG (@) Handle" name="socialHandle" ng-model=newsdata.socialHandle>
                   </label>
                 </div>
               </div>
@@ -41,14 +41,14 @@
               <div class="row">
                 <div class="col">
                   <label class="item item-input large">
-                    <input type="text" placeholder="Price" name="Price">
+                    <input type="text" placeholder="Price" name="Price" ng-model="newsdata.Price">
                   </label>
                 </div>
               </div>
               <div class="row description-row">
                 <div class="col">
                   <label class="item item-input text">
-                    <textarea placeholder="Description" rows="5" ng-model="Clubs.details" ng-Required="true" name="Details" lose-focus-on-return></textarea>
+                    <textarea placeholder="Description" rows="5" ng-model="newsdata.Details" ng-Required="true" name="Details" lose-focus-on-return></textarea>
                   </label>
                 </div>
               </div>

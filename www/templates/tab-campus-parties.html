@@ -6,7 +6,7 @@
  
     <ion-refresher
 				pulling-text="Pull to refresh..."
-				on-refresh="refreshItems()" >
+				on-refresh="doRefresh()" >
 		</ion-refresher >   
       
     <div class="list card" ng-repeat="item in items | orderBy: '-createdAt'"

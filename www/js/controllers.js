@@ -51,10 +51,20 @@ angular.module('starter.controllers', [])
     { title: 'Rap', id: 5 },
     { title: 'Cowbell', id: 6 }
   ];
-  
+    
+
   News.getAll().success(function(data){
 		$scope.items = data.results;	
 	})
+ 
+  $scope.doRefresh = function() {
+      News.getAll().success(function(data){
+		$scope.items = data.results;	
+	}).finally(function() {
+       // Stop the ion-refresher from spinning
+       $scope.$broadcast('scroll.refreshComplete');
+     });
+  }
 
 }])
 
@@ -68,6 +78,15 @@ angular.module('starter.controllers', [])
  	Clubs.getAll().success(function(data){
 		$scope.items = data.results;
 	})
+    
+    $scope.doRefresh = function() {
+      Clubs.getAll().success(function(data){
+		$scope.items = data.results;	
+	}).finally(function() {
+       // Stop the ion-refresher from spinning
+       $scope.$broadcast('scroll.refreshComplete');
+     });
+  }
 
 	$ionicModal.fromTemplateUrl('templates/add-event.html', {
 		animation: 'slide-in-up',
@@ -86,18 +105,16 @@ angular.module('starter.controllers', [])
 }])
 
 .controller('AddEventsCtrl', ['$scope','Clubs','$state', function($scope,Clubs,$state){
-        $scope.Title={};
-        $scope.Date={};
-        $scope.socialHandle={};
-        $scope.Price={};
-        $scope.Details={};
+        $scope.newsdata={};
+
                               
        $scope.create=function(){
-            Clubs.create({Details:$scope.Clubs.Details}).success(function(data){
-            $state.go('app.events');                    
+            Clubs.create({Title:$scope.newsdata.Title},{Date:$scope.newsdata.Date}).success(function(data){
+                alert("Success");
+            //$state.go('app.events');                    
       });   
    }                       
-	
+	alert("An Error has occured, please check your information and try again");
 }])
 
 
