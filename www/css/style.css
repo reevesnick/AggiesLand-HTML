@@ -1,1 +1,8 @@
-/* Empty. Add your own CSS if you like */
+.custom-gold{
+  color : white !important;
+  background-color:#f4c018 !important;
+}
+.custom-blue{
+  color : white !important;
+  background-color:#201b57 !important;
+}

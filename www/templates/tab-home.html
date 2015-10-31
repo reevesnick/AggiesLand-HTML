@@ -1,28 +1,28 @@
 <ion-view view-title="Home">
-  <ion-content class="padding">
+  <ion-content class="custom-gold">
    <ion-refresher
 				pulling-text="Pull to refresh..."
 				on-refresh="doRefresh()" >
-		</ion-refresher >   
-      
+		</ion-refresher >
+
     <div class="list card"
 	    ng-repeat="item in items | orderBy: '-createdAt'"
 	      			item="item"
 	      			href="#/news/edit/{{item.objectId}}" > <!--ui-sref="app.home-detail({objectId: $index})" --> <!-- For Detail View-->
-      
-      
+
+
       <!-- Image File -->
-   <div class="item item-image"  	      			
+   <div class="item item-image"
    item="item"
 	      			href="#/news/create/{{item.objectId}}/{{item.imageFile}}"
 	      			ng-if="item.imageFile">
 	      <!--	<img src="resources/sports-slideshow-song.jpg">  -->
-		  	<img src="{{item.imageFile.url}}">   
-	            <h2>{{item.Title}}</h2>         
+		  	<img src="{{item.imageFile.url}}">
+	            <h2>{{item.Title}}</h2>
 				<p>{{item.Date}}</p>
           <div class="item item-text-wrap">{{item.Body}}</div>
       </div>
     </div>
   </ion-content>
-</ion-view>      
-      
+</ion-view>
+

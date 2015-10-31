@@ -1,35 +1,35 @@
 <ion-view view-title="Events">
 	<ion-nav-buttons side="right">
-		<button class="button button-icon button-clear ion-plus" ng-click="openModal()"></button>    
+		<button class="button button-icon button-clear ion-plus" ng-click="openModal()"></button>
 	</ion-nav-buttons>
- <ion-content class="padding">
- 
+ <ion-content class="custom-gold">
+
     <ion-refresher
 				pulling-text="Pull to refresh..."
 				on-refresh="doRefresh()" >
-		</ion-refresher >   
-      
+		</ion-refresher >
+
     <div class="list card" ng-repeat="item in items | orderBy: '-createdAt'"
 	      			item="campusitem"
 	      			href="#/campusevents/edit/{{item.objectId}}">
-      
-      
+
+
       <!-- Image File -->
       <div class="item item-image" >
 	     <img src="{{item.imageFile.url}}" >
-	      <h2>{{item.Title}}</h2>         
+	      <h2>{{item.Title}}</h2>
 	      <p>{{item.Date}}</p>
           <p>{{item.Price}}</p>
           <p>{{item.socialHandle}}</p>
           <div class="item item-text-wrap">{{item.Details}}</div>
         <!--  <p>{{item.Details}}</p> -->
       </div>
-      
-      
-      
-      
+
+
+
+
       </div>
-      
+
 
      </ion-content>
 </ion-view>
