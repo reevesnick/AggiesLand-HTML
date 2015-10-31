@@ -41,7 +41,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('HomeCtrl', ['$scope','News', function($scope,News) {
+.controller('HomeCtrl', ['$scope','News','$ionicLoading', function($scope,News,$ionicLoading) {
 	// Dummy data. Just ignore it
   $scope.playlists = [
     { title: 'Reggae', id: 1 },
@@ -52,10 +52,16 @@ angular.module('starter.controllers', [])
     { title: 'Cowbell', id: 6 }
   ];
     
-
+var _this = this
+  $ionicLoading.show({
+    template: 'Loading News'
+  })
   News.getAll().success(function(data){
 		$scope.items = data.results;	
-	})
+	}).then(function(result) {
+    $ionicLoading.hide()
+    _this.breweries = result.data.breweries
+  })
  
   $scope.doRefresh = function() {
       News.getAll().success(function(data){
@@ -74,10 +80,18 @@ angular.module('starter.controllers', [])
 	})
 }])
 
-.controller('EventsCtrl',['$scope','$state','$location','Clubs','$ionicModal', function($scope,$state,$location,Clubs,$ionicModal) {
+.controller('EventsCtrl',['$scope','$state','$location','Clubs','$ionicModal','$ionicLoading', function($scope,$state,$location,Clubs,$ionicModal,$ionicLoading) {
+    var _this = this
+  $ionicLoading.show({
+    template: 'Loading Events'
+  })
  	Clubs.getAll().success(function(data){
 		$scope.items = data.results;
-	})
+	}).then(function(result) {
+    $ionicLoading.hide()
+    _this.breweries = result.data.breweries
+  })
+ 
     
     $scope.doRefresh = function() {
       Clubs.getAll().success(function(data){
