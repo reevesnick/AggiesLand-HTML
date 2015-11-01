@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ngCordova','ionic.service.core','starter.controllers','starter.services','AggiesLand.services'])
+angular.module('starter', ['ionic','ionic.service.core','ngCordova','starter.controllers','starter.services','AggiesLand.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -23,7 +23,7 @@ angular.module('starter', ['ionic','ngCordova','ionic.service.core','starter.con
       Parse.initialize("5b91v6F6A0GaeC64FuIgeCctYaEM81LFybSR4g7K", "1fSBU7HwbAFCGwDDg6rdG9fEe4Grfc3dm8GV8VuB");
 
       var push = new Ionic.Push({
-      "debug": true
+      "debug": false
     });
 
     push.register(function(token) {

@@ -19,7 +19,7 @@ angular.module('starter.controllers', [])
     success: function(user) {
       // Hooray! Let them use the app now.
       alert("Success! You are now registered");
-                  $state.go('app.home')
+                  $state.go('app.home');
 
     },
     error: function(user, error) {
@@ -34,8 +34,7 @@ angular.module('starter.controllers', [])
     success: function(user) {
       // Do stuff after successful login.
       console.log(user);
-      alert("Success!");
-            $state.go('app.home')
+      $state.go('app.home');
 
     },
     error: function(user, error) {
