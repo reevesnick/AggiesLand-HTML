@@ -6,3 +6,7 @@
   color : white !important;
   background-color:#201b57 !important;
 }
+.login {
+  background: url("../resources/Login1.png") no-repeat center center fixed;
+  background-size: cover;
+}
