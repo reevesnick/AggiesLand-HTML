@@ -1,5 +1,7 @@
 <ion-view title="Sign Up">
-    <ion-content padding="true" class="has-header">
+
+      <ion-nav-bar class="custom-blue">
+        <ion-content padding="true" class="custom-gold">
         <form>
             <ion-list>
                 <label class="item item-input">
@@ -15,7 +17,9 @@
                     <input type="password" placeholder="At least 6 characters" ng-model="data.password">
                 </label>
             </ion-list>
-            <button class="button button-stable button-block" ng-click="signupEmail()">Done</button>
+            <button class="button button-clear button-block custom-blue" ng-click="signupEmail()">Done</button>
         </form>
-    </ion-content>
+        </ion-content>
+      </ion-nav-bar>
+
 </ion-view>

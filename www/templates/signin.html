@@ -1,5 +1,6 @@
 <ion-view title="Sign In">
-    <ion-content padding="true" class="has-header">
+  <ion-nav-bar class="custom-blue">
+    <ion-content padding="true" class="has-header custom-gold">
         <form>
             <ion-list>
                 <label class="item item-input">
@@ -11,7 +12,8 @@
                     <input type="password" placeholder="enter your password..." ng-model="data.password">
                 </label>
             </ion-list>
-            <button class="button button-stable button-block" ng-click="loginEmail()">Done</button>
+            <button class="button button-clear button-block custom-blue" ng-click="loginEmail()">Done</button>
         </form>
     </ion-content>
+    </ion-nav-bar>
 </ion-view>
