@@ -98,10 +98,10 @@ var _this = this
 		$scope.items = data.results;	
 	}).finally(function() {
        // Stop the ion-refresher from spinning
-       $scope.$broadcast('scroll.refreshComplete');
+       $scope.$broadcast('scroll.refreshComplete')
      });
   }
-
+/*
 	$ionicModal.fromTemplateUrl('templates/add-event.html', {
 		animation: 'slide-in-up',
 		scope: $scope
@@ -116,6 +116,7 @@ var _this = this
     $scope.closeModal = function(){
         $scope.modal.hide();
   }
+  */
 }])
 
 .controller('AddEventsCtrl', ['$scope','Clubs','$state', function($scope,Clubs,$state){
@@ -123,10 +124,11 @@ var _this = this
 
                               
        $scope.create=function(){
-            Clubs.create({Title:$scope.newsdata.Title},{Date:$scope.newsdata.Date},{socialHandle:$scope.newsdata.socialHandle},{Price:$scope.newsdata.Price},{Details:$scope.newsdata.Details}).success(function(data){
-                alert("Success");
+            Clubs.create({Title:$scope.newsdata.Title, Date:$scope.newsdata.Date,socialHandle:$scope.newsdata.socialHandle,Price:$scope.newsdata.Price,Details:$scope.newsdata.Details}).success(function(data){
+                alert("Thank you for submiting your events. Keep in mind that we have to monitize the events published.");
+                $state.go('app.events');
       });  
-         	alert("An Error has occured, please check your information and try again");
+         	
   
    }                       
 }])

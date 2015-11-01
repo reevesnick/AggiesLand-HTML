@@ -96,7 +96,7 @@ angular.module('starter', ['ionic','ngCordova','ionic.service.core','starter.con
  
      // Add Events
    .state('app.add-events',{
-	    url:'events/add-events',
+	    url:'/add-events',
 	    views: {
 		    'menuContent': {
 			    templateUrl: 'templates/add-event.html',

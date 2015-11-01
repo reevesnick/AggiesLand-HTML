@@ -228,6 +228,4 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
 }]).value('PARSE_CREDENTIALS',{
     APP_ID: '5b91v6F6A0GaeC64FuIgeCctYaEM81LFybSR4g7K',
     REST_API_KEY:'4nWl2C1geJnmfhGoxykM7gAKxUvVah5wSN951Ksq'
-})
-
-;
+});
