@@ -35,6 +35,25 @@ angular.module('starter', ['ionic','ngCordova','ionic.service.core','starter.con
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
+  
+  .state('login', {
+    url: '/',
+    templateUrl: 'templates/login 2.html',
+    controller: 'LoginCtrl'
+  })
+  .state('signup', {
+    url: '/signup',
+    templateUrl: 'templates/signup.html',
+    controller: 'LoginCtrl'
+  })
+  
+   .state('signin', {
+    url: '/signin',
+    templateUrl: 'templates/signin.html',
+    controller: 'LoginCtrl'
+  })
+
+
 
     .state('app', {
     url: '/app',
@@ -117,5 +136,5 @@ angular.module('starter', ['ionic','ngCordova','ionic.service.core','starter.con
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/');
 });
