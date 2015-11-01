@@ -123,12 +123,12 @@ var _this = this
 
                               
        $scope.create=function(){
-            Clubs.create({Title:$scope.newsdata.Title},{Date:$scope.newsdata.Date}).success(function(data){
+            Clubs.create({Title:$scope.newsdata.Title},{Date:$scope.newsdata.Date},{socialHandle:$scope.newsdata.socialHandle},{Price:$scope.newsdata.Price},{Details:$scope.newsdata.Details}).success(function(data){
                 alert("Success");
-            //$state.go('app.events');                    
-      });   
+      });  
+         	alert("An Error has occured, please check your information and try again");
+  
    }                       
-	alert("An Error has occured, please check your information and try again");
 }])
 
 
