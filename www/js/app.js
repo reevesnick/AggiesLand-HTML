@@ -21,14 +21,6 @@ angular.module('starter', ['ionic','ionic.service.core','ngCordova','starter.con
     }
     
       Parse.initialize("5b91v6F6A0GaeC64FuIgeCctYaEM81LFybSR4g7K", "1fSBU7HwbAFCGwDDg6rdG9fEe4Grfc3dm8GV8VuB");
-
-      var push = new Ionic.Push({
-      "debug": false
-    });
-
-    push.register(function(token) {
-      console.log("Device token:",token.token);
-    });
  
   });
 })
@@ -136,5 +128,5 @@ angular.module('starter', ['ionic','ionic.service.core','ngCordova','starter.con
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/app/home');
 });
