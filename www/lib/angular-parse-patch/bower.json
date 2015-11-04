@@ -1,0 +1,23 @@
+{
+  "name": "angular-parse-patch",
+  "homepage": "https://github.com/mcwebb/angular-parse-patch",
+  "author": "Matthew Webb",
+  "main": "dist/angular-parse-patch.js",
+  "description": "A patch for the Parse SDK to make it work natively and seamlessly with AngularJS",
+  "keywords": [
+    "parse",
+    "angular",
+    "angularjs",
+    "promises",
+    "promise",
+    "defer"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

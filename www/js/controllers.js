@@ -1,8 +1,13 @@
 angular.module('starter.controllers', [])
 
 
-.controller('LoginCtrl', function($scope, $state) {
+.controller('LoginCtrl', function($scope, $state, $ionicHistory) {
  
+  $scope.myGoBack = function(){
+    $ionicHistory.goBack();
+
+  }
+    
   $scope.data = {};
  
   $scope.signupEmail = function(){  
