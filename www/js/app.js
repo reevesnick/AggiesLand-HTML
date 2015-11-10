@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic','ionic.service.core','ngCordova','starter.controllers','starter.services','AggiesLand.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$state) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -22,6 +22,10 @@ angular.module('starter', ['ionic','ionic.service.core','ngCordova','starter.con
     
       Parse.initialize("5b91v6F6A0GaeC64FuIgeCctYaEM81LFybSR4g7K", "1fSBU7HwbAFCGwDDg6rdG9fEe4Grfc3dm8GV8VuB");
  
+      
+      if (Parse.User.current()){
+          $state.go('/app/home')
+      }
   });
 })
 
