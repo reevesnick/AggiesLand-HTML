@@ -45,6 +45,7 @@ angular.module('starter.controllers', [])
     error: function(user, error) {
       // The login failed. Check error to see why.
       alert("Error! Please check your information and try again");
+        //var alertPopup = 
     }
   });
   };

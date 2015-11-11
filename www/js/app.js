@@ -24,7 +24,7 @@ angular.module('starter', ['ionic','ionic.service.core','ngCordova','starter.con
  
       
       if (Parse.User.current()){
-          $state.go('/app/home')
+          $state.go('/app/home');
       }
   });
 })
