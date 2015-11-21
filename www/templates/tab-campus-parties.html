@@ -1,5 +1,7 @@
 <ion-view view-title="Events">
-
+	<ion-nav-buttons side="right">
+		<button class="button button-icon button-clear ion-plus" ng-click="addEvent()"></button>
+	</ion-nav-buttons>
  <ion-content class="custom-gold">
 
     <ion-refresher
@@ -23,6 +25,13 @@
         <!--  <p>{{item.Details}}</p> -->
       </div>
 
+        
+<div class="item tabs tabs-secondary tabs-icon-left">
+    <a class="tab-item" href="#">
+      <i class="icon ion-share"></i>
+      Share
+    </a>
+  </div>
 
 
 

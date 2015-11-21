@@ -1,4 +1,7 @@
 <ion-view view-title="Home">
+    	<ion-nav-buttons side="right">
+		<button class="button button-icon button-clear ion-gear-b" ng-click="show()"></button>
+	</ion-nav-buttons>
   <ion-content class="custom-gold">
    <ion-refresher
 				pulling-text="Pull to refresh..."
@@ -22,6 +25,15 @@
 				<p>{{item.Date}}</p>
           <div class="item item-text-wrap">{{item.Body}}</div>
       </div>
+        
+        <div class="item tabs tabs-secondary tabs-icon-left">
+    <a class="tab-item" href="#">
+      <i class="icon ion-share" >
+        </i>
+      Share
+    </a>
+  </div>
+
     </div>
   </ion-content>
 </ion-view>

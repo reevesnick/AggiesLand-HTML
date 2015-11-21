@@ -4,12 +4,16 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ionic.service.core','ngCordova','starter.controllers','starter.services','AggiesLand.services'])
+angular.module('starter', ['ionic','ionic.service.core','ngCordova','starter.controllers','starter.services','AggiesLand.services','ngTwitter'])
+
+
 
 .run(function($ionicPlatform,$state) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+     
+ 
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
@@ -23,9 +27,7 @@ angular.module('starter', ['ionic','ionic.service.core','ngCordova','starter.con
       Parse.initialize("5b91v6F6A0GaeC64FuIgeCctYaEM81LFybSR4g7K", "1fSBU7HwbAFCGwDDg6rdG9fEe4Grfc3dm8GV8VuB");
  
       
-      if (Parse.User.current()){
-          $state.go('/app/home');
-      }
+
   });
 })
 
@@ -69,6 +71,17 @@ angular.module('starter', ['ionic','ionic.service.core','ngCordova','starter.con
     }
   })
   
+     .state('app.add-events',{
+	    url:'/events/add-events',
+	    views: {
+		    'menuContent': {
+			    templateUrl: 'templates/add-event.html',
+			    controller: 'AddEventsCtrl'
+		    }
+	    }
+    })
+    
+  
   .state('app.routes', {
       url: '/routes',
       views: {
@@ -109,19 +122,6 @@ angular.module('starter', ['ionic','ionic.service.core','ngCordova','starter.con
 	 }
  })
  
-     // Add Events
-   .state('app.add-events',{
-	    url:'/add-events',
-	    views: {
-		    'menuContent': {
-			    templateUrl: 'templates/add-event.html',
-			    controller: 'AddEventsCtrl'
-		    }
-	    }
-    })
-    
-
-
   .state('app.sports', {
     url: '/sports',
     views: {
@@ -130,7 +130,22 @@ angular.module('starter', ['ionic','ionic.service.core','ngCordova','starter.con
         controller: 'SportsCtrl'
       }
     }
+  })
+  
+    .state('app.feed', {
+    url: '/feed',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/feed.html',
+        controller: 'FeedCtrl'
+      }
+    }
   });
+    
+    if (Parse.User.current()){
+          $urlRouterProvider.otherwise('/app/home');
+    }
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/');
+
 });

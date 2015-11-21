@@ -6,6 +6,7 @@
     "ionic-platform-web-client": "~0.2.1"
   },
   "dependencies": {
-    "angular-parse-patch": "~1.4.0"
+    "angular-parse-patch": "~1.4.0",
+    "ng-twitter-api": "~0.1.5"
   }
 }

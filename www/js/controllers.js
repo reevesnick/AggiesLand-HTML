@@ -5,11 +5,16 @@ angular.module('starter.controllers', [])
  
   $scope.myGoBack = function(){
     $ionicHistory.goBack();
-
-  }
-    
+  } 
   $scope.data = {};
- 
+    
+ // Auto Login for User
+var currentUser = Parse.User.current();
+if (currentUser) {
+   $state.go('app.home');
+} else {
+
+}
   $scope.signupEmail = function(){  
 	   //Create a new user on Parse
   var user = new Parse.User();
@@ -93,17 +98,10 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('HomeCtrl', ['$scope','News','$ionicLoading', function($scope,News,$ionicLoading) {
+.controller('HomeCtrl', ['$scope','News','$ionicLoading','$ionicActionSheet','$state', function($scope,News,$ionicLoading,$ionicActionSheet,$state) {
 	// Dummy data. Just ignore it
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-    
+
+    // Loading Screen
 var _this = this
   $ionicLoading.show({
     template: 'Loading News'
@@ -115,6 +113,7 @@ var _this = this
     _this.breweries = result.data.breweries
   })
  
+  // Pull to Refresh function
   $scope.doRefresh = function() {
       News.getAll().success(function(data){
 		$scope.items = data.results;	
@@ -123,6 +122,56 @@ var _this = this
        $scope.$broadcast('scroll.refreshComplete');
      });
   }
+  
+  //Setings Menu
+   // Triggered on a button click, or some other target
+ $scope.show = function() {
+
+   // Show the action sheet
+   var hideSheet = $ionicActionSheet.show({
+    
+     destructiveText: 'Log Out',
+     titleText: 'Settings',
+     cancelText: 'Cancel',
+     cancel: function() {
+          // add cancel code..
+        },
+       
+    destructiveButtonClicked: function() {
+        //Do Stuff
+       
+       Parse.User.logOut();
+       $state.go('login');
+       return true;
+    }
+    
+});
+
+   // For example's sake, hide the sheet after two seconds
+   $timeout(function() {
+     hideSheet();
+   }, 2000);
+
+ };
+  
+  // Share Methods 
+  
+  
+  // share anywhere
+$scope.share = function () {
+    $cordovaSocialSharing.share('This is my message', 'Subject string', null, 'http://www.mylink.com');
+}
+
+// Share via email. Can be used for feedback
+$scope.sendFeedback = function () {
+    $cordovaSocialSharing
+            .shareViaEmail('Some message', 'Some Subject', 'to_address@gmail.com');
+}
+
+// Share via SMS. Access multiple numbers in a string like: '0612345678,0687654321'
+$scope.sendSMS = function (message, number) {
+    $cordovaSocialSharing.shareViaSMS(message, number);
+}
 
 }])
 
@@ -153,6 +202,10 @@ var _this = this
        $scope.$broadcast('scroll.refreshComplete')
      });
   }
+
+    $scope.addEvent = function(){
+        $state.go('app.add-events');
+    }
 /*
 	$ionicModal.fromTemplateUrl('templates/add-event.html', {
 		animation: 'slide-in-up',
@@ -198,9 +251,7 @@ var _this = this
 })
 
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-})
 
-.controller('71Ctrl',function($scope){
+.controller('FeedCtrl',function($scope,$ionicPlatform, $twitterApi,$cordovaOauth){
 	//$scope.test = function
 });
