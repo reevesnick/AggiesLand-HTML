@@ -51,6 +51,11 @@ angular.module('starter', ['ionic','ionic.service.core','ngCordova','starter.con
     controller: 'LoginCtrl'
   })
 
+  .state('forgetpassword', {
+    url: '/forgetpassword',
+    templateUrl: 'templates/forgetpassword.html',
+    controller: 'ForgotPasswordController'
+  })
 
 
     .state('app', {
@@ -81,7 +86,6 @@ angular.module('starter', ['ionic','ionic.service.core','ngCordova','starter.con
 	    }
     })
     
-  
   .state('app.routes', {
       url: '/routes',
       views: {
