@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 
-.controller('LoginCtrl', function($scope, $state, $ionicHistory) {
+.controller('LoginCtrl', function($scope, $state, $ionicHistory, $ionicPopup) {
  
   $scope.myGoBack = function(){
     $ionicHistory.goBack();
@@ -28,13 +28,21 @@ if (currentUser) {
   user.signUp(null, {
     success: function(user) {
       // Hooray! Let them use the app now.
-      alert("Success! You are now registered");
+      //alert("Success! You are now registered");
+        $ionicPopup.alert({
+              title: 'Success',
+              content: 'You are now registered!'
+            })
                   $state.go('app.home');
 
     },
     error: function(user, error) {
       // Show the error message somewhere and let the user try again.
-      alert("Error: " + error.code + " " + error.message);
+        $ionicPopup.alert({
+              title: 'Error',
+              content: error.code + '' + error.message
+            })
+      //alert("Error: " + error.code + " " + error.message);
     }
   });
   };
@@ -49,7 +57,11 @@ if (currentUser) {
     },
     error: function(user, error) {
       // The login failed. Check error to see why.
-      alert("Error! Please check your information and try again");
+      //alert("Error! Please check your information and try again");
+        $ionicPopup.alert({
+              title: 'Error',
+              content: 'Please check your information and try again'
+            })
         //var alertPopup = 
     }
   });
@@ -284,7 +296,11 @@ $scope.sendSMS = function (message, number) {
                               
        $scope.create=function(){
             Clubs.create({Title:$scope.newsdata.Title, Date:$scope.newsdata.Date,socialHandle:$scope.newsdata.socialHandle,Price:$scope.newsdata.Price,Details:$scope.newsdata.Details}).success(function(data){
-                alert("Thank you for submiting your events. Keep in mind that we have to monitize the events published.");
+                //alert("Thank you for submiting your events. Keep in mind that we have to monitize the events published.");
+                $ionicPopup.alert({
+              title: 'Published',
+              content: 'Thank you for submiting your events. Keep in mind that we have review the post.'
+            })
                 $state.go('app.events');
       });  
          	
