@@ -12,12 +12,20 @@
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
-  <ion-side-menu side="left">
-    <ion-header-bar class="bar-positive custom-blue">
-      <h1 class="title">Menu</h1>
+  <ion-side-menu class="custom-blue" side="left">
+      <!--
+    <ion-header-bar class="bar-positive custom-blue">  
     </ion-header-bar>
+
+-->
     <ion-content class= "custom-blue">
       <ion-list>
+          <ion-item style="height:250px;">
+          <div id="profile-info">
+          <img id="profile-image" src="{{currentUser.get('profile_pic').get('url')}}">
+          <h6 id="profile-name">Hello, {{currentUser.get('username')}}</h6>
+        </div>
+          </ion-item>
         <ion-item menu-close  href="#/app/home">
        Home
         </ion-item>

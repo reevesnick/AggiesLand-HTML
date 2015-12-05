@@ -25,6 +25,12 @@
   <feature name="Device">
       <param name="ios-package" value="CDVDevice" />
   </feature>
+  <feature name="InAppBrowser">
+      <param name="android-package" value="org.apache.cordova.InAppBrowser"/>
+  </feature>
+  <feature name="InAppBrowser">
+      <param name="ios-package" value="CDVInAppBrowser" />
+  </feature>
   <platform name="android">
     <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>
     <icon src="resources/android/icon/drawable-mdpi-icon.png" density="mdpi"/>

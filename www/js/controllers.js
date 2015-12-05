@@ -131,6 +131,10 @@ if (currentUser) {
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+    
+    //Parse Current User
+    $scope.currentUser = Parse.User.current();
+
 
   // Form data for the login modal
   $scope.loginData = {};
@@ -290,21 +294,116 @@ $scope.sendSMS = function (message, number) {
   */
 }])
 
-.controller('AddEventsCtrl', ['$scope','Clubs','$state', function($scope,Clubs,$state){
+.controller('AddEventsCtrl', ['$scope','Clubs','$state','$ionicPopup','$cordovaImagePicker', function($scope,Clubs,$state,$ionicPopup,$cordovaImagePicker,$rootScope){
         $scope.newsdata={};
+         var currentuser = Parse.User.current();
+    
+      
+        $scope.uploadfile = function(){
+            // Image picker will load images according to these settings
+            var options = {
+                maximumImagesCount: 1, // Max number of selected images, I'm using only one for this example
+                width: 300,
+                height: 300,
+                quality: 80,
+                encodingType: 0     // 0=JPG 1=PNG
+// Higher is better
+            };
+ 
+           $cordovaImagePicker.getPictures(options).then(function (imageData) {
+                           $scope.image = imageData;
+            
+                }, function(error) {
+                // error getting photos
+                         $ionicPopup.alert({
+                            title: 'Error',
+                            content: 'Unable to obtain photo.'
+                    })
+                },options);   
+        }
 
-                              
+    function convertImgToBase64URL(url, callback, outputFormat){
+    var img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.onload = function(){
+        var canvas = document.createElement('CANVAS');
+        var ctx = canvas.getContext('2d');
+        var dataURL;
+        canvas.height = this.height;
+        canvas.width = this.width;
+        ctx.drawImage(this, 0, 0);
+        dataURL = canvas.toDataURL(outputFormat);
+        callback(dataURL);
+        canvas = null; 
+    };
+    img.src = url;
+}
+        
        $scope.create=function(){
-            Clubs.create({Title:$scope.newsdata.Title, Date:$scope.newsdata.Date,socialHandle:$scope.newsdata.socialHandle,Price:$scope.newsdata.Price,Details:$scope.newsdata.Details}).success(function(data){
-                //alert("Thank you for submiting your events. Keep in mind that we have to monitize the events published.");
-                $ionicPopup.alert({
+           var CreateEvent = Parse.Object.extend("Clubs");
+           var createevent = new CreateEvent();
+           //var query = new Parse.Query("Clubs");
+           //query.equalTo("CreatedBy",Parse.User.current())
+           
+
+           convertImgToBase64URL($scope.image, function(base64Img){
+                    var parseFile = new Parse.File("eventPic.png",{base64:base64Img});
+               
+                     createevent.set("Title",$scope.newsdata.Title);
+           createevent.set("Date",$scope.newsdata.Date);
+           createevent.set("socialHandle",$scope.newsdata.socialHandle);
+           createevent.set("Price",$scope.newsdata.Price);
+           createevent.set("Details",$scope.newsdata.Details);
+           createevent.set("CreatedBy",Parse.User.current());
+           createevent.set("imageFile", parseFile);
+           
+           createevent.save(null,{
+               success: function(createevent){
+                     $ionicPopup.alert({
               title: 'Published',
               content: 'Thank you for submiting your events. Keep in mind that we have review the post.'
             })
                 $state.go('app.events');
-      });  
-         	
-  
+            },
+               error: function(createevent,error){
+                   $ionicPopup.alert({
+              title: 'Error',
+              content: 'Unable to publish your event. Please check your information and try again. Error Details: '+error.message
+               })
+               }
+           });
+           
+
+           });
+
+           
+
+           /*
+           createevent.set("Title",$scope.newsdata.Title);
+           createevent.set("Date",$scope.newsdata.Date);
+           createevent.set("socialHandle",$scope.newsdata.socialHandle);
+           createevent.set("Price",$scope.newsdata.Price);
+           createevent.set("Details",$scope.newsdata.Details);
+           createevent.set("CreatedBy",Parse.User.current());
+           createevent.set("imageFile", parseFile);
+           
+           createevent.save(null,{
+               success: function(createevent){
+                     $ionicPopup.alert({
+              title: 'Published',
+              content: 'Thank you for submiting your events. Keep in mind that we have review the post.'
+            })
+                $state.go('app.events');
+            },
+               error: function(createevent,error){
+                   $ionicPopup.alert({
+              title: 'Error',
+              content: 'Unable to publish your event. Please check your information and try again. Error Details: '+error.message
+               })
+               }
+           });
+           */
+           
    }                       
 }])
 

@@ -123,7 +123,17 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
-                    'Content-Type':'application/json'
+                    'Content-Type':'application/json',
+                     params: {
+                        include: {
+                            user: {
+                                __type: 'Pointer',
+                                className: '_User',
+                                objectId: user.objectId,
+                                username: user.username
+                                }
+                            }
+                     }
               
 
                 }
@@ -134,7 +144,18 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
-                    'Content-Type':'application/json'
+                    'Content-Type':'application/json',
+                     params: {
+                        include: {
+                            user: {
+                                __type: 'Pointer',
+                                className: '_User',
+                                objectId: user.objectId,
+                                username: user.username
+
+                                }
+                            }
+                     }
 
                 }
             });
@@ -228,4 +249,29 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
 }]).value('PARSE_CREDENTIALS',{
     APP_ID: '5b91v6F6A0GaeC64FuIgeCctYaEM81LFybSR4g7K',
     REST_API_KEY:'4nWl2C1geJnmfhGoxykM7gAKxUvVah5wSN951Ksq'
-});
+})
+
+.factory('Photo', function () {
+    return {
+
+        convertImageToBase64: function (url, callback, output) {
+            var img = new Image();
+            img.crossOrigin = 'Anonymous';
+            img.onload = function(){
+                var canvas = document.createElement('CANVAS'),
+                    c = canvas.getContext('2d'), urlData;
+                canvas.height = this.height;
+                canvas.width = this.width;
+                c.drawImage(this, 0, 0);
+                urlData = canvas.toDataURL(output);
+                callback(urlData);
+                canvas = null;
+            };
+            img.src = url;
+        }
+
+    };
+})
+
+
+;

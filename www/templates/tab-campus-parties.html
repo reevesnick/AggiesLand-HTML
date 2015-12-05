@@ -9,10 +9,14 @@
 				on-refresh="doRefresh()" >
 		</ion-refresher >
 
-    <div class="list card" ng-repeat="item in items | orderBy: '-createdAt'"
+    <div class="list card" ng-repeat="item in items | orderBy: '-createdAt'" 
 	      			item="campusitem"
 	      			href="#/campusevents/edit/{{item.objectId}}">
-
+ <div class="item item-avatar" href="#/campusevents/edit/{{user.objectId}}" >
+    <img src="https://c.urbanpro.com/images/photo-placeholder-50x50.jpg?v=1109">
+    <h2>{{item._user.username}}</h2>
+    <p>{{item.createdAt | date:"medium"}}</p>
+  </div>
 
       <!-- Image File -->
       <div class="item item-image" >
@@ -25,14 +29,14 @@
         <!--  <p>{{item.Details}}</p> -->
       </div>
 
- <!--       
+     
 <div class="item tabs tabs-secondary tabs-icon-left">
     <a class="tab-item" href="#">
-      <i class="icon ion-share" onclick="window.plugins.socialsharing.share('Message only')"></i>
-      Share
+      <i class="icon ion-ios-flag"></i>
+        Flag Event
     </a>
   </div>
--->
+
 
 
       </div>

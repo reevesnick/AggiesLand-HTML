@@ -9,11 +9,24 @@ angular.module('starter', ['ionic','ionic.service.core','ngCordova','starter.con
 
 
 .run(function($ionicPlatform,$state) {
-  $ionicPlatform.ready(function() {
+  $ionicPlatform.ready(function($ionicPopup,$cordovaCamera,$cordovaImagePicker) {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+       // Check for network connection
+    if(window.Connection) {
+      if(navigator.connection.type == Connection.NONE) {
+        $ionicPopup.confirm({
+          title: 'No Internet Connection',
+          content: 'Sorry, no Internet connectivity detected. Please reconnect and try again.'
+        })
+        .then(function(result) {
+          if(!result) {
+            ionic.Platform.exitApp();
+          }
+        });
+      }
      
- 
+    }
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
