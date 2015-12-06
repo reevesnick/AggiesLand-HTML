@@ -21,6 +21,12 @@ input[type="text"] {
 textarea {
     width: 98%;
 }
+
+.iframe-wrapper iframe {
+   width: 100%;
+   height: 100%;
+ }
+
 /*
 .bar-header {
   top: 20px;

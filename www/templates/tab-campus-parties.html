@@ -9,12 +9,12 @@
 				on-refresh="doRefresh()" >
 		</ion-refresher >
 
-    <div class="list card" ng-repeat="item in items | orderBy: '-createdAt'" 
+    <div class="list card" ng-repeat="item in items | orderBy: '-createdAt'"
 	      			item="campusitem"
 	      			href="#/campusevents/edit/{{item.objectId}}">
- <div class="item item-avatar" href="#/campusevents/edit/{{user.objectId}}" >
-    <img src="https://c.urbanpro.com/images/photo-placeholder-50x50.jpg?v=1109">
-    <h2>{{item._user.username}}</h2>
+ <div class="item item-avatar" >
+    <img src={{item.profile_pic.url}}>
+    <h2>{{item._User.username}}</h2>
     <p>{{item.createdAt | date:"medium"}}</p>
   </div>
 

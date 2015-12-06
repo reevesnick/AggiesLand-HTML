@@ -125,8 +125,8 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
                     'Content-Type':'application/json',
                      params: {
-                        include: {
-                            user: {
+                        where: {
+                            _User: {
                                 __type: 'Pointer',
                                 className: '_User',
                                 objectId: user.objectId,
@@ -146,8 +146,8 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
                     'Content-Type':'application/json',
                      params: {
-                        include: {
-                            user: {
+                        where: {
+                            _User: {
                                 __type: 'Pointer',
                                 className: '_User',
                                 objectId: user.objectId,
