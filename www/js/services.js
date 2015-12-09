@@ -123,20 +123,7 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
-                    'Content-Type':'application/json',
-                     params: {
-                        where: {
-                            _User: {
-                                __type: 'Pointer',
-                                className: '_User',
-                                objectId: user.objectId,
-                                username: user.username
-                                }
-                            }
-                     }
-              
-
-                }
+                    'Content-Type':'application/json'                     }
             });
         },
         get:function(id){
@@ -144,20 +131,7 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
-                    'Content-Type':'application/json',
-                     params: {
-                        where: {
-                            _User: {
-                                __type: 'Pointer',
-                                className: '_User',
-                                objectId: user.objectId,
-                                username: user.username
-
-                                }
-                            }
-                     }
-
-                }
+                    'Content-Type':'application/json'                }
             });
         },
         create:function(data){
@@ -198,12 +172,14 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
 	
     return {
         getAll:function(){
-            return $http.get('https://api.parse.com/1/classes/Clubs',{
+            return $http.get('https://api.parse.com/1/classes/Clubs?include=CreatedBy',{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
-                    'Content-Type':'application/json'
+                    'Content-Type':'application/json',
+                        params: { include: 'CreatedBy'}
 
+                        
                 }
             });
         },

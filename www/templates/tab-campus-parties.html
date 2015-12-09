@@ -11,10 +11,10 @@
 
     <div class="list card" ng-repeat="item in items | orderBy: '-createdAt'"
 	      			item="campusitem"
-	      			href="#/campusevents/edit/{{item.objectId}}">
- <div class="item item-avatar" >
-    <img src={{item.profile_pic.url}}>
-    <h2>{{item._User.username}}</h2>
+	      			href="#/campusevents/create/{{item.objectId}}">
+ <div class="item item-avatar">
+    <img src={{item.CreatedBy.profile_pic.url}}>
+    <h2>{{item.CreatedBy.username}}</h2>
     <p>{{item.createdAt | date:"medium"}}</p>
   </div>
 
@@ -31,16 +31,11 @@
 
      
 <div class="item tabs tabs-secondary tabs-icon-left">
-    <a class="tab-item" href="#">
+    <a class="tab-item" ng-click="flagEvent()">
       <i class="icon ion-ios-flag"></i>
         Flag Event
     </a>
   </div>
-
-
-
       </div>
-
-
      </ion-content>
 </ion-view>

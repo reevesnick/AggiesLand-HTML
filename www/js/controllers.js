@@ -123,7 +123,7 @@ if (currentUser) {
 
 
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,$cordovaImagePicker,$ionicPopup) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -133,39 +133,73 @@ if (currentUser) {
   //});
     
     //Parse Current User
-    $scope.currentUser = Parse.User.current();
+    $scope.currentuser = Parse.User.current();
+   // $scope.urlPicture = Parse.User.current().get("profile_pic");
 
+    
+     $scope.uploadfile = function(){
+            // Image picker will load images according to these settings
+            var options = {
+                maximumImagesCount: 1, // Max number of selected images, I'm using only one for this example
+                width: 300,
+                height: 300,
+                quality: 80,
+                encodingType: 0     // 0=JPG 1=PNG
+// Higher is better
+            };
+ 
+           $cordovaImagePicker.getPictures(options).then(function (imageData) {
+                           $scope.image = imageData;
+            
+                }, function(error) {
+                // error getting photos
+                         $ionicPopup.alert({
+                            title: 'Error',
+                            content: 'Unable to obtain photo.'
+                    })
+                },options);
+         
+        convertImgToBase64URL($scope.image, function(base64Img){
+         var imageFile = new Parse.File("profilePic.jpg", {base64: base64Img});
+            var currentUser = Parse.User.current();
+            currentUser.set("profile_pic", imageFile);
+            currentUser.save(null,{
+                     success: function(currentUser){
+                     $ionicPopup.alert({
+              title: 'Success',
+              content: 'Your profile picture has been saved!'
+            })
+                $state.go('app.events');
+            },
+               error: function(currentUser,error){
+                   $ionicPopup.alert({
+              title: 'Error',
+              content: ""+error.message
+               })
+               }
+            });
+        
+        
+                    });
+     }
+                              
+    function convertImgToBase64URL(url, callback, outputFormat){
+        var img = new Image();
+        img.crossOrigin = 'Anonymous';
+        img.onload = function(){
+            var canvas = document.createElement('CANVAS');
+            var ctx = canvas.getContext('2d');
+            var dataURL;
+            canvas.height = this.height;
+            canvas.width = this.width;
+            ctx.drawImage(this, 0, 0);
+            dataURL = canvas.toDataURL(outputFormat);
+            callback(dataURL);
+            canvas = null; 
+        };
+        img.src = url;
+    }
 
-  // Form data for the login modal
-  $scope.loginData = {};
-
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/tab-home.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
-
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
 })
 
 .controller('HomeCtrl', ['$scope','News','$ionicLoading','$ionicActionSheet','$state', function($scope,News,$ionicLoading,$ionicActionSheet,$state) {
@@ -251,7 +285,7 @@ $scope.sendSMS = function (message, number) {
 	})
 }])
 
-.controller('EventsCtrl',['$scope','$state','$location','Clubs','$ionicModal','$ionicLoading', function($scope,$state,$location,Clubs,$ionicModal,$ionicLoading) {
+.controller('EventsCtrl',['$scope','$state','$location','Clubs','$ionicModal','$ionicLoading','$window', function($scope,$state,$location,Clubs,$ionicModal,$ionicLoading,$window) {
     var _this = this
   $ionicLoading.show({
     template: 'Loading Events'
@@ -275,6 +309,12 @@ $scope.sendSMS = function (message, number) {
 
     $scope.addEvent = function(){
         $state.go('app.add-events');
+    }
+    
+    $scope.flagEvent = function(){
+        var link = "mailto:support@aggiesland.me?subject=Flagged Event Detail&body=items.Title"+
+                   "Name: " + $scope.contact.name + "Number: " + $scope.contact.phone;     
+    window.location.href = link;
     }
 /*
 	$ionicModal.fromTemplateUrl('templates/add-event.html', {
@@ -359,9 +399,10 @@ $scope.sendSMS = function (message, number) {
            
            createevent.save(null,{
                success: function(createevent){
+                   Parse.User.current().increment('Posts').save();
                      $ionicPopup.alert({
               title: 'Published',
-              content: 'Thank you for submiting your events. Keep in mind that we have review the post.'
+              content: 'Thank you for submiting your events. Keep in mind that we will have review the post.'
             })
                 $state.go('app.events');
             },
