@@ -3,10 +3,10 @@
       <div>
         <ion-list>
             <li class="item item-input item-stacked-label">
-                <input type="text" placeholder="Title" name="Title" rows="1" ng-model="newsdata.Title" required>
+                <input type="text" placeholder="Event Name" name="Title" rows="1" ng-model="newsdata.Title" required>
             </li>
             <li class="item item-input item-stacked-label">
-                <input type="text" placeholder="Date" name="Date" rows="1" ng-model="newsdata.Date" required>
+                <input type="text" placeholder="Event Date" name="Date" rows="1" ng-model="newsdata.Date" required>
             </li>
 
             <li class="item item-input item-stacked-label">
@@ -16,7 +16,7 @@
                 <input type="text" placeholder="Price" name="Price" rows="1" ng-model="newsdata.Price">
             </li>
             <li class="item item-input item-stacked-label">
-                <textarea type="text" placeholder="Description" name="Details" rows="10" ng-model="newsdata.Details" required></textarea>
+                <textarea type="text" placeholder="Descrption (Give details and be specific)" name="Details" rows="10" ng-model="newsdata.Details" required></textarea>
             </li>
             <ion-button class="button button-block button-clear custom-blue" ng-click="create()">
                 Add

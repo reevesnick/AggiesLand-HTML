@@ -285,7 +285,7 @@ $scope.sendSMS = function (message, number) {
 	})
 }])
 
-.controller('EventsCtrl',['$scope','$state','$location','Clubs','$ionicModal','$ionicLoading','$window', function($scope,$state,$location,Clubs,$ionicModal,$ionicLoading,$window) {
+.controller('EventsCtrl',['$scope','$state','$location','Clubs','$ionicModal','$ionicLoading','$window','$cordovaEmailComposer','$ionicPopup', function($scope,$state,$location,Clubs,$ionicModal,$ionicLoading,$window,$cordovaEmailComposer,$ionicPopup) {
     var _this = this
   $ionicLoading.show({
     template: 'Loading Events'
@@ -312,29 +312,26 @@ $scope.sendSMS = function (message, number) {
     }
     
     $scope.flagEvent = function(){
-        var link = "mailto:support@aggiesland.me?subject=Flagged Event Detail&body=items.Title"+
-                   "Name: " + $scope.contact.name + "Number: " + $scope.contact.phone;     
-    window.location.href = link;
+        $cordovaEmailComposer.isAvailable().then(function() {
+            // is available
+            }, function () {
+                // not available
+        });
+
+        var email = {
+            to: 'support@aggiesland.me',
+            subject: 'Flag Event',
+            body: 'Message Flag event here.',
+            isHtml: true
+  };
+    $cordovaEmailComposer.open(email).then(null, function () {
+    // user cancelled email
+    });
     }
-/*
-	$ionicModal.fromTemplateUrl('templates/add-event.html', {
-		animation: 'slide-in-up',
-		scope: $scope
-	}).then(function(modal){
-		$scope.modal = modal;
-	});
-	
-	$scope.openModal = function(){
-		$scope.modal.show();
-	}
-    
-    $scope.closeModal = function(){
-        $scope.modal.hide();
-  }
-  */
+
 }])
 
-.controller('AddEventsCtrl', ['$scope','Clubs','$state','$ionicPopup','$cordovaImagePicker', function($scope,Clubs,$state,$ionicPopup,$cordovaImagePicker,$rootScope){
+.controller('AddEventsCtrl', ['$scope','Clubs','$state','$ionicPopup','$cordovaImagePicker','$ionicLoading', function($scope,Clubs,$state,$ionicPopup,$cordovaImagePicker,$rootScope,$ionicLoading){
         $scope.newsdata={};
          var currentuser = Parse.User.current();
     
@@ -349,10 +346,11 @@ $scope.sendSMS = function (message, number) {
                 encodingType: 0     // 0=JPG 1=PNG
 // Higher is better
             };
- 
+            
+
            $cordovaImagePicker.getPictures(options).then(function (imageData) {
                            $scope.image = imageData;
-            
+ 
                 }, function(error) {
                 // error getting photos
                          $ionicPopup.alert({
@@ -389,7 +387,7 @@ $scope.sendSMS = function (message, number) {
            convertImgToBase64URL($scope.image, function(base64Img){
                     var parseFile = new Parse.File("eventPic.png",{base64:base64Img});
                
-                     createevent.set("Title",$scope.newsdata.Title);
+           createevent.set("Title",$scope.newsdata.Title);
            createevent.set("Date",$scope.newsdata.Date);
            createevent.set("socialHandle",$scope.newsdata.socialHandle);
            createevent.set("Price",$scope.newsdata.Price);
@@ -409,7 +407,7 @@ $scope.sendSMS = function (message, number) {
                error: function(createevent,error){
                    $ionicPopup.alert({
               title: 'Error',
-              content: 'Unable to publish your event. Please check your information and try again. Error Details: '+error.message
+              content: 'Unable to publish your event.'+error.message
                })
                }
            });
