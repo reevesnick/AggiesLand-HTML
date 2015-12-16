@@ -123,7 +123,7 @@ if (currentUser) {
 
 
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout,$cordovaImagePicker,$ionicPopup) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,$cordovaImagePicker,$ionicPopup,$ionicLoading) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -141,8 +141,8 @@ if (currentUser) {
             // Image picker will load images according to these settings
             var options = {
                 maximumImagesCount: 1, // Max number of selected images, I'm using only one for this example
-                width: 300,
-                height: 300,
+                width: 128,
+                height: 128,
                 quality: 80,
                 encodingType: 0     // 0=JPG 1=PNG
 // Higher is better
@@ -150,6 +150,7 @@ if (currentUser) {
  
            $cordovaImagePicker.getPictures(options).then(function (imageData) {
                            $scope.image = imageData;
+
             
                 }, function(error) {
                 // error getting photos
@@ -159,12 +160,17 @@ if (currentUser) {
                     })
                 },options);
          
+         
         convertImgToBase64URL($scope.image, function(base64Img){
+                             $scope.loading = $ionicLoading.show({
+                    template: '<ion-spinner icon="lines" class="spinner-balanced"></ion-spinner><br>Processing Image...'
+                });
          var imageFile = new Parse.File("profilePic.jpg", {base64: base64Img});
             var currentUser = Parse.User.current();
             currentUser.set("profile_pic", imageFile);
             currentUser.save(null,{
                      success: function(currentUser){
+                     $ionicLoading.hide();
                      $ionicPopup.alert({
               title: 'Success',
               content: 'Your profile picture has been saved!'
@@ -172,6 +178,7 @@ if (currentUser) {
                 $state.go('app.events');
             },
                error: function(currentUser,error){
+                   $ionicLoading.hide();
                    $ionicPopup.alert({
               title: 'Error',
               content: ""+error.message
@@ -208,7 +215,11 @@ if (currentUser) {
     // Loading Screen
 var _this = this
   $ionicLoading.show({
-    template: 'Loading News'
+    template: '<ion-spinner icon="lines" class="spinner-balanced"></ion-spinner><br>Loading News',
+    animation: 'fade-in',
+    showBackdrop: true,
+    maxWidth: 200,
+    showDelay: 0  
   })
   News.getAll().success(function(data){
 		$scope.items = data.results;	
@@ -288,7 +299,7 @@ $scope.sendSMS = function (message, number) {
 .controller('EventsCtrl',['$scope','$state','$location','Clubs','$ionicModal','$ionicLoading','$window','$cordovaEmailComposer','$ionicPopup', function($scope,$state,$location,Clubs,$ionicModal,$ionicLoading,$window,$cordovaEmailComposer,$ionicPopup) {
     var _this = this
   $ionicLoading.show({
-    template: 'Loading Events'
+    template: '<ion-spinner icon="lines" class="spinner-balanced"></ion-spinner><br>Loading Events'
   })
  	Clubs.getAll().success(function(data){
 		$scope.items = data.results;
@@ -395,6 +406,7 @@ $scope.sendSMS = function (message, number) {
            createevent.set("CreatedBy",Parse.User.current());
            createevent.set("imageFile", parseFile);
            
+       
            createevent.save(null,{
                success: function(createevent){
                    Parse.User.current().increment('Posts').save();
@@ -402,6 +414,7 @@ $scope.sendSMS = function (message, number) {
               title: 'Published',
               content: 'Thank you for submiting your events. Keep in mind that we will have review the post.'
             })
+ 
                 $state.go('app.events');
             },
                error: function(createevent,error){
