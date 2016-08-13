@@ -60,7 +60,7 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
 	
     return {
         getAll:function(){
-            return $http.get('https://api.parse.com/1/classes/News',{
+            return $http.get('https://parseapi.back4app.com/classes/News',{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -70,7 +70,7 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
             });
         },
         get:function(id){
-            return $http.get('https://api.parse.com/1/classes/News/'+id,{
+            return $http.get('https://parseapi.back4app.com/classes/News/'+id,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -80,7 +80,7 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
             });
         },
         create:function(data){	        
-            return $http.post('https://api.parse.com/1/classes/News',data,{
+            return $http.post('https://parseapi.back4app.com/classes/News',data,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -89,7 +89,7 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
             });
         },
         edit:function(id,data){
-            return $http.put('https://api.parse.com/1/classes/News/'+id,data,{
+            return $http.put('https://parseapi.back4app.com/classes/News/'+id,data,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -98,7 +98,7 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
             });
         },
         delete:function(id){
-            return $http.delete('https://api.parse.com/1/classes/News/'+id,{
+            return $http.delete('https://parseapi.back4app.com/classes/News/'+id,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -119,7 +119,7 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
 	
     return {
         getAll:function(){
-            return $http.get('https://api.parse.com/1/classes/CampusEvents',{
+            return $http.get('https://parseapi.back4app.com/classes/CampusEvents',{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -127,7 +127,7 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
             });
         },
         get:function(id){
-            return $http.get('https://api.parse.com/1/classes/CampusEvents/'+id,{
+            return $http.get('https://parseapi.back4app.com/classes/CampusEvents/'+id,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -135,7 +135,7 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
             });
         },
         create:function(data){
-            return $http.post('https://api.parse.com/1/classes/CampusEvents',data,{
+            return $http.post('https://parseapi.back4app.com/classes/CampusEvents',data,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -144,7 +144,7 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
             });
         },
         edit:function(id,data){
-            return $http.put('https://api.parse.com/1/classes/CampusEvens/'+id,data,{
+            return $http.put('https://parseapi.back4app.com/classes/CampusEvens/'+id,data,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -153,7 +153,7 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
             });
         },
         delete:function(id){
-            return $http.delete('https://api.parse.com/1/classes/CampusEvents/'+id,{
+            return $http.delete('https://parseapi.back4app.com/classes/CampusEvents/'+id,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -172,7 +172,7 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
 	
     return {
         getAll:function(){
-            return $http.get('https://api.parse.com/1/classes/Clubs?include=CreatedBy',{
+            return $http.get('https://parseapi.back4app.com/classes/Clubs?include=CreatedBy',{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -184,7 +184,7 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
             });
         },
         get:function(id){
-            return $http.get('https://api.parse.com/1/classes/Clubs/'+id,{
+            return $http.get('https://parseapi.back4app.com/classes/Clubs/'+id,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -194,7 +194,7 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
             });
         },
         create:function(data){
-            return $http.post('https://api.parse.com/1/classes/Clubs',data,{
+            return $http.post('https://parseapi.back4app.com/classes/Clubs',data,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -203,7 +203,7 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
             });
         },
         edit:function(id,data){
-            return $http.put('https://api.parse.com/1/classes/Clubs/'+id,data,{
+            return $http.put('https://parseapi.back4app.com/classes/Clubs/'+id,data,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
@@ -212,7 +212,7 @@ angular.module('AggiesLand.services',[]).factory('News',['$http','PARSE_CREDENTI
             });
         },
         delete:function(id){
-            return $http.delete('https://api.parse.com/1/classes/Clubs/'+id,{
+            return $http.delete('https://parseapi.back4app.com/classes/Clubs/'+id,{
                 headers:{
                     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
